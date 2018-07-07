@@ -1,0 +1,16 @@
+        TODO:
+
+- Parsing log file :
+  - Timestamp class
+    - Constructor
+    - Comparison Operators
+  - Logs class
+    - Constructor
+    - Parse()
+    - Dump()
+
+- Request Handling
+  - Count
+  - Top
+
+- REST support
