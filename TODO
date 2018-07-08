@@ -4,10 +4,10 @@
   - Timestamp class         [X]
     - Constructor           [X]
     - Comparison Operators  [X]
-  - Logs class              [ ]
-    - Constructor           [ ]
-    - Parse()               [ ]
-    - Dump()                [ ]
+  - Logs class              [X]
+    - Constructor           [X]
+    - Parse()               [X]
+    - Dump()                [X]
 
 - Request Handling
   - Count
