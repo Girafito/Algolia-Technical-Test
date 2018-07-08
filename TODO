@@ -1,13 +1,13 @@
         TODO:
 
 - Parsing log file :
-  - Timestamp class
-    - Constructor
-    - Comparison Operators
-  - Logs class
-    - Constructor
-    - Parse()
-    - Dump()
+  - Timestamp class         [X]
+    - Constructor           [X]
+    - Comparison Operators  [X]
+  - Logs class              [ ]
+    - Constructor           [ ]
+    - Parse()               [ ]
+    - Dump()                [ ]
 
 - Request Handling
   - Count
