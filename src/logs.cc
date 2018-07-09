@@ -37,17 +37,37 @@ void dump_log_map(Logs::LogMap lm)
 
 
 
+std::vector<std::pair<std::string_view, size_t>>
+Logs::top(Timerange& range, size_t& n)
+{
+  auto low = log_map_.lower_bound(range.inf_get());
+  auto up = log_map_.upper_bound(range.sup_get());
+  Logs::LogOcc log_count;
+
+  for (; low != up; low++)
+    for (auto it = low->second.begin(); it != low->second.end(); it++)
+      log_count[it->first] += it->second;
+
+  std::vector<std::pair<std::string_view, size_t>> res;
+  res.resize(n);
+  std::partial_sort_copy(log_count.begin(), log_count.end(),
+                         res.begin(), res.end(),
+                         [](auto& a, auto& b){return a.second > b.second;});
+
+  return res;
+}
+
 size_t Logs::count(Timerange range)
 {
   auto low = log_map_.lower_bound(range.inf_get());
   auto up = log_map_.upper_bound(range.sup_get());
-  std::set<std::string_view> log_set;
+  std::unordered_map<std::string_view, size_t> log_count;
 
   for (; low != up; low++)
     for (auto it = low->second.begin(); it != low->second.end(); it++)
-      log_set.emplace(it->first);
+      log_count[it->first] += it->second;
 
-   return log_set.size();
+   return log_count.size();
 }
 
 void Logs::parseFile()
