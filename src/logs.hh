@@ -3,6 +3,7 @@
 #include <memory>
 #include <unordered_map>
 #include <map>
+#include <set>
 #include <iostream>
 #include <string_view>
 #include <sys/types.h>
@@ -12,6 +13,7 @@
 #include <unistd.h>
 
 #include "timestamp.hh"
+#include "timerange.hh"
 
 class Logs
 {
@@ -23,6 +25,9 @@ class Logs
     ~Logs();
     size_t str_to_timestamp(const char* s);
     void parseFile();
+
+    void top(Timerange tr, int n);
+    size_t count(Timerange tr);
 
   private:
     int fd_;

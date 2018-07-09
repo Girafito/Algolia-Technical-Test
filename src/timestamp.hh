@@ -6,6 +6,7 @@ class Timestamp
 {
   public:
     Timestamp(const char* s);
+    Timestamp();
 
     bool operator<(Timestamp t) const;
     bool operator<=(Timestamp t) const;

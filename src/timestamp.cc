@@ -1,5 +1,10 @@
 #include "timestamp.hh"
 
+Timestamp::Timestamp()
+  : date_(0)
+  , hour_(0)
+{}
+
 Timestamp::Timestamp(const char *s)
   : date_((*s - 48) * 10000000 + (*(s + 1) - 48) * 1000000 +
           (*(s + 2) - 48) * 100000 + (*(s + 3) - 48) * 10000 +

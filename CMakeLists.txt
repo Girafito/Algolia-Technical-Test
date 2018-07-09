@@ -2,10 +2,11 @@ project(LOG_ANALYZER)
 
 set(SRC src/main.cc
         src/logs.cc
+        src/timerange.cc
         src/timestamp.cc)
 
 set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_FLAGS "-Wall -Wextra -pedantic")
+set(CMAKE_CXX_FLAGS "-Wall -Wextra -pedantic -g")
 
 include_directories(src)
 

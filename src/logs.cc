@@ -35,6 +35,21 @@ void dump_log_map(Logs::LogMap lm)
   }
 }
 
+
+
+size_t Logs::count(Timerange range)
+{
+  auto low = log_map_.lower_bound(range.inf_get());
+  auto up = log_map_.upper_bound(range.sup_get());
+  std::set<std::string_view> log_set;
+
+  for (; low != up; low++)
+    for (auto it = low->second.begin(); it != low->second.end(); it++)
+      log_set.emplace(it->first);
+
+   return log_set.size();
+}
+
 void Logs::parseFile()
 {
   const char* logfile = static_cast<const char*>(mmap_ptr_);
@@ -56,5 +71,5 @@ void Logs::parseFile()
   }
   std::cout << "Done, " << nb_logs << " logs parsed." << std::endl;
 
-//  dump_log_map(log_map_);
+ // dump_log_map(log_map_);
 }
