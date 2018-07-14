@@ -3,13 +3,22 @@
 
 #include "timestamp.hh"
 
+/**
+* \brief Timerange class, used to represent a
+*        time range with two Timestamps
+*/
 class Timerange
 {
   public:
+    Timerange() = delete;
+    Timerange(const Timerange&) = default;
     Timerange(std::string& s);
+
     friend std::ostream& operator<<(std::ostream& ostr, const Timerange& ts);
-    Timestamp& inf_get();
-    Timestamp& sup_get();
+
+    const Timestamp& inf_get() const;
+    const Timestamp& sup_get() const;
+
   private:
     Timestamp inf_;
     Timestamp sup_;

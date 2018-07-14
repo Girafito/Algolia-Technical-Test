@@ -9,8 +9,10 @@
     - Parse()               [X]
     - Dump()                [X]
 
-- Request Handling
-  - Count
-  - Top
+- Request Handling          [X]
+  - Count                   [X]
+  - Top                     [X]
 
-- REST support
+- REST support              [~]
+  -> Rewrite the REST handling
+     with another API

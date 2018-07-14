@@ -1,5 +1,7 @@
 #include "timerange.hh"
 
+#define DATE_SIZE 19
+
 Timerange::Timerange(std::string& s)
 {
   std::string s_inf, s_sup;
@@ -11,7 +13,7 @@ Timerange::Timerange(std::string& s)
     s_sup.push_back(s[i]);
     i++;
   }
-  while (i < 19)
+  while (i < DATE_SIZE)
   {
     s_inf.push_back('0');
     s_sup.push_back('9');
@@ -21,12 +23,12 @@ Timerange::Timerange(std::string& s)
   sup_ = Timestamp(s_sup.c_str());
 }
 
-Timestamp& Timerange::inf_get()
+const Timestamp& Timerange::inf_get() const
 {
   return inf_;
 }
 
-Timestamp& Timerange::sup_get()
+const Timestamp& Timerange::sup_get() const
 {
   return sup_;
 }

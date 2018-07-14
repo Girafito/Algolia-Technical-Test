@@ -5,14 +5,15 @@ Timestamp::Timestamp()
   , hour_(0)
 {}
 
+
 Timestamp::Timestamp(const char *s)
-  : date_((*s - 48) * 10000000 + (*(s + 1) - 48) * 1000000 +
-          (*(s + 2) - 48) * 100000 + (*(s + 3) - 48) * 10000 +
-          (*(s + 5) - 48) * 1000 + (*(s + 6) - 48) * 100 +
-          (*(s + 8) - 48) * 10 + *(s + 9) - 48)
-  , hour_((*(s + 11) - 48) * 100000 + (*(s + 12) - 48) * 10000 +
-          (*(s + 14) - 48) * 1000 + (*(s + 15) - 48) * 100 +
-          (*(s + 17) - 48) * 10 + *(s + 18) - 48)
+  : date_(((s[0] - '0') * 1000 + (s[1] - '0') * 100 +
+          (s[2] - '0') * 10 + (s[3] - '0')) * YEAR +
+          ((s[5]- '0') * 10 + (s[6] - '0')) * MONTH +
+          (s[8] - '0') * 10 + s[9] - '0')
+  , hour_(((s[11] - '0') * 10 + (s[12] - '0')) * HOUR +
+          ((s[14] - '0') * 10 + (s[15] - '0')) * MINUTE +
+          (s[17] - '0') * 10 + s[18] - '0')
 {}
 
 bool Timestamp::operator<(Timestamp t) const
@@ -52,6 +53,7 @@ std::ostream& operator<<(std::ostream& ostr, const Timestamp& ts)
 {
   ostr << ts.date_ / 10000 << "-" << ts.date_ / 100 % 100 << "-"
        << ts.date_ % 100 << " ";
-  ostr << ts.hour_ / 10000 << "-" << ts.hour_ / 100 % 100 << "-" << ts.hour_ % 100;
+  ostr << ts.hour_ / 10000 << "-" << ts.hour_ / 100 % 100 << "-"
+       << ts.hour_ % 100;
   return ostr;
 }
